@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TapToMove : MonoBehaviour
+public class TapToMove : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private Transform moveTarget;
     private Mover spider;
+
+    private Vector3 targetPosition;
 
 
     private void Start()
@@ -11,53 +14,31 @@ public class TapToMove : MonoBehaviour
         spider = FindAnyObjectByType<Mover>();
     }
 
-    private void OnMouseDown()
-    {
-        if (moveTarget == null)
-        {
-            Debug.LogError($"You forgot to set moveTarget on {gameObject.name} - {nameof(TapToMove)}");
-            return;
-        }
 
-        Vector3 mousePosition = Input.mousePosition;
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        if (!Physics.Raycast(ray, out RaycastHit hit))
-        {
-            return;
-        }
+    //private void OnMouseDown()
+    //{
+    //    if (moveTarget == null)
+    //    {
+    //        Debug.LogError($"You forgot to set moveTarget on {gameObject.name} - {nameof(TapToMove)}");
+    //        return;
+    //    }
 
-        Vector3 worldPosition = hit.point;
-        if (!spider.moving)
-        {
-            moveTarget.transform.position = worldPosition;
-            spider.GetComponent<Webber>().CreateLine(spider.transform.position);
-        }
-    }
+    //    Vector3 mousePosition = Input.mousePosition;
+    //    Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+    //    if (!Physics.Raycast(ray, out RaycastHit hit))
+    //    {
+    //        return;
+    //    }
 
-    private void Movement()
-    {
-            if (Input.GetMouseButtonDown(0)) // 0 = left mouse button
-    {
-        if (moveTarget == null)
-        {
-            Debug.LogError($"You forgot to set moveTarget on {gameObject.name} - {nameof(TapToMove)}");
-            return;
-        }
-        Vector3 mousePosition = Input.mousePosition;
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        if (!Physics.Raycast(ray, out RaycastHit hit))
-        {
-            return;
-        }
-        Vector3 worldPosition = hit.point;
-        if (!spider.moving)
-        {
-            moveTarget.transform.position = worldPosition;
-            spider.GetComponent<Webber>().CreateLine(spider.transform.position);
-        }
-    }
+    //    Vector3 worldPosition = hit.point;
+    //    if (!spider.moving)
+    //    {
+    //        moveTarget.transform.position = worldPosition;
+    //        spider.GetComponent<Webber>().CreateLine(spider.transform.position);
+    //    }
+    //}
 
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -82,6 +63,30 @@ public class TapToMove : MonoBehaviour
         {
             spider.moving = true;
             spider.animator.Play("Walk");
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (moveTarget == null)
+        {
+            Debug.LogError($"You forgot to set moveTarget on {gameObject.name} - {nameof(TapToMove)}");
+            return;
+        }
+
+        Vector3 mousePosition = eventData.position;
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        if (!Physics.Raycast(ray, out RaycastHit hit))
+        {
+            return;
+        }
+
+        Vector3 worldPosition = hit.point;
+        Debug.Log("Clicked");
+        if (!spider.moving)
+        {
+            moveTarget.transform.position = worldPosition;
+            spider.GetComponent<Webber>().CreateLine(spider.transform.position);
         }
     }
 }
