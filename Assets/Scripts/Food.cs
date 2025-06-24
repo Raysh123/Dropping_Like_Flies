@@ -3,44 +3,38 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    private Rigidbody foodRB;
-    public bool isCaught = false;
+    [SerializeField]
+    private float moveSpeed = 2f;
+    private bool isCaught = false;
     private ScoreManager scoreManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
-        scoreManager = FindAnyObjectByType<ScoreManager>();
-        foodRB = GetComponent<Rigidbody>();
-    }
 
+    private void Update()
+    {
+        if (scoreManager == null)
+        {
+            scoreManager = FindAnyObjectByType<ScoreManager>();
+        }
+        transform.Translate(Vector3.down * moveSpeed * Time.deltaTime, Space.World);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        scoreManager.food = this.gameObject.GetComponent<Food>();
+        if (isCaught) { return; }
+
         if (other.gameObject.CompareTag("Web"))
         {
             isCaught = true;            
+            scoreManager.AddScore();
+            transform.Translate(Vector3.zero);
+            StartCoroutine(Caught());
+            //gameObject.SetActive(false);
         }
     }
 
-    // Update is called once per frame
-    private void Update()
+    IEnumerator Caught()
     {
-        if (isCaught)
-        {
-            foodRB.constraints = RigidbodyConstraints.FreezePositionY;
-            Foods();
-            isCaught=false;
-        }
-        DestroyObject();
-    }
-    private void Foods()
-    {
-        scoreManager.food = null;
-        Destroy(this.gameObject, 0.01f);
-    }
-
-    private void DestroyObject()
-    {
-        Destroy(this.gameObject, 3f);
+        yield return new WaitForSeconds(0.03f);
+        isCaught = false;
+        gameObject.SetActive(false);
     }
 }

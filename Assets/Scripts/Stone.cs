@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour
 {
+    [SerializeField]
+    private float moveSpeed = 5f;
+    [SerializeField]
     private WebCounter counter;
 
-    private void Start()
+    private void Update()
     {
-        counter = FindAnyObjectByType<WebCounter>();
+        if(counter == null)
+        {
+            counter = FindAnyObjectByType<WebCounter>();
+        }
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime, Space.World);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -15,10 +22,5 @@ public class Stone : MonoBehaviour
             counter.isDestroying = true;
             Destroy(other.gameObject);
         }
-        DestroyObject();
-    }
-    private void DestroyObject()
-    {
-        Destroy(this.gameObject, 3f);
     }
 }

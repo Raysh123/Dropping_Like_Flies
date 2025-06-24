@@ -1,73 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8184027618437578344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 395747c1aad4eb443894cdb54711146c, type: 3}
-  m_Name: SymmetricNearestNeighbor
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    intensity: 0.472
-    passes: 3
-    radius: 6
-    detail: 0
-    detailStrength: 1
-    embossStrength: 5
-    embossAngle: 0
-    waterColor: 0.442
-    processDepth: 1
-    depthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: -0.39957315
-        value: 1.3691876
-        inSlope: -0.043809768
-        outSlope: -0.043809768
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.090244025
-      - serializedVersion: 3
-        time: 1.4530754
-        value: 0.3931389
-        inSlope: -0.87998116
-        outSlope: -0.87998116
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.2952785
-      - serializedVersion: 3
-        time: 5.713197
-        value: -0.6334056
-        inSlope: 0.021666808
-        outSlope: 0.021666808
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.37007076
-        outWeight: 0.2631555
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    depthPower: 1
-    sampleSky: 1
-    viewDepthCurve: 0
-    renderSize: 1
-    brightness: -0.06
-    contrast: 0.9
-    gamma: 1.1
-    hue: 0
-    saturation: 1.61
-    affectSceneView: 1
-    whenToInsert: 550
-    forceCurveTextureUpdate: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,9 +24,8 @@ MonoBehaviour:
     probeSamplingDebugMesh: {fileID: 0}
     probeSamplingDebugTexture: {fileID: 0}
     probeVolumeBlendStatesCS: {fileID: 0}
-  m_RendererFeatures:
-  - {fileID: -8184027618437578344}
-  m_RendererFeatureMap: 98c10aeb3d7e6c8e
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}

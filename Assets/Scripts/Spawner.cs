@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Spawner : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class Spawner : MonoBehaviour
     private float foodSpawnRate = 1f;
     [SerializeField]
     private float nextfoodSpawnTime = 0.2f;
+
+    private float scale;
+
+    private void Start()
+    {
+        scale = Random.Range(0.7f, 1.4f);
+    }
 
     private void Update()
     {
@@ -39,7 +47,14 @@ public class Spawner : MonoBehaviour
         float randomX = Random.Range(bounds.min.x, bounds.max.x);
         float randomZ = Random.Range(bounds.max.z, bounds.min.z);
 
-        GameObject spawnedObject = Instantiate(stone, new Vector3(randomX, 49.787f, randomZ), Quaternion.identity);
+        GameObject spawnedObject = ObjectPool.sharedInstance.GetPooledObject();
+        if (spawnedObject != null)
+        {
+            spawnedObject.transform.position = new Vector3(randomX, 49.787f, randomZ);
+            spawnedObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 60f), Random.Range(0f, 60f));
+            spawnedObject.transform.localScale = new Vector3(scale, scale, scale);  
+            spawnedObject.SetActive(true);
+        }
     }
 
     private void SpawnFood()
@@ -49,6 +64,14 @@ public class Spawner : MonoBehaviour
         float randomX = Random.Range(bounds.min.x, bounds.max.x);
         float randomZ = Random.Range(bounds.max.z, bounds.min.z);
 
-        GameObject spawnedObject = Instantiate(food, new Vector3(randomX, 49.787f, randomZ), Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 60f), Random.Range(0f, 60f)));
+        GameObject spawnedObject = ObjectPool.sharedInstance.GetPooledFoods();
+        if (spawnedObject != null)
+        {
+            spawnedObject.transform.position = new Vector3(randomX, 49.787f, randomZ);
+            spawnedObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 60f), Random.Range(0f, 60f));
+            spawnedObject.SetActive(true);
+        }
+            
+            //Instantiate(food, new Vector3(randomX, 49.787f, randomZ), Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 60f), Random.Range(0f, 60f)));
     }
 }
