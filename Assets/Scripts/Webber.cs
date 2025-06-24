@@ -51,10 +51,7 @@ public class Webber : MonoBehaviour
         currentLine.AddComponent<WebFunction>();
         currentLine.gameObject.layer = 6;
         currentLine.gameObject.tag = "Web";
-
-
     }
-
 
     private void Update()
     {
@@ -68,6 +65,5 @@ public class Webber : MonoBehaviour
             currentLine.GetComponent<MeshFilter>().mesh = mesh;
             currentLine.GetComponent<MeshCollider>().sharedMesh = mesh;
         }
-
     }
 }
