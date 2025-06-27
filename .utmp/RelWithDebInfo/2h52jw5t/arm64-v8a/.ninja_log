@@ -1,10 +1,19 @@
 # ninja log v5
+86	1200	7712589487249365	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c6e051476570142e
 1	1047	7712589485724361	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d7759b0a0dcc4b68
 39	1070	7712589485905976	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7f0e73d18c10c0f3
 69	1086	7712589486098864	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	dfb7efd17ff4fb0d
-103	1146	7712589486733676	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8b6dae672bc50f40
-86	1200	7712589487249365	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c6e051476570142e
 25	1218	7712589487420657	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4f59665ce2b880ce
+103	1146	7712589486733676	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8b6dae672bc50f40
+1505	1684	7712589492057330	C:/Users/raasiq.shaikh/Documents/Unity Projects/CodeCamp/Dropping_Like_Flies/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2h52jw5t/obj/arm64-v8a/libgame.so	e51f4252155ba81f
 53	1395	7712589489196551	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d46f23b0a32f8c78
 14	1505	7712589490257681	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	7815b9a24a58a9fe
-1505	1684	7712589492057330	C:/Users/raasiq.shaikh/Documents/Unity Projects/CodeCamp/Dropping_Like_Flies/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2h52jw5t/obj/arm64-v8a/libgame.so	e51f4252155ba81f
+36	769	7724911794443810	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d7759b0a0dcc4b68
+58	775	7724911794499011	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	dfb7efd17ff4fb0d
+15	777	7724911794524075	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	7f0e73d18c10c0f3
+81	815	7724911794916797	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8b6dae672bc50f40
+24	871	7724911795466026	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4f59665ce2b880ce
+47	872	7724911795466026	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c6e051476570142e
+70	1029	7724911797062805	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d46f23b0a32f8c78
+5	1072	7724911797472886	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	7815b9a24a58a9fe
+1073	1228	7724911799007731	C:/Users/raasiq.shaikh/Documents/Unity Projects/CodeCamp/Dropping_Like_Flies/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2h52jw5t/obj/arm64-v8a/libgame.so	e51f4252155ba81f

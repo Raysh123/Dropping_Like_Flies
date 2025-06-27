@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,12 +6,15 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private Transform moveTarget;
     private Mover spider;
+    [SerializeField]
+    private ParticleSystem touchParticle;
 
     private Vector3 targetPosition;
 
 
     private void Start()
     {
+        touchParticle.gameObject.SetActive(false);
         spider = FindAnyObjectByType<Mover>();
     }
 
@@ -46,6 +50,7 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
         {
             spider.moving = false;
             spider.animator.Play("Idle");
+            spider.PlayWebParticle();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -85,8 +90,17 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
         Debug.Log("Clicked");
         if (!spider.moving)
         {
+            touchParticle.transform.position = worldPosition;
+            StartCoroutine(TouchParticle());
             moveTarget.transform.position = worldPosition;
             spider.GetComponent<Webber>().CreateLine(spider.transform.position);
         }
     }
+    IEnumerator TouchParticle()
+    {
+        touchParticle.gameObject.SetActive (true);
+        yield return new WaitForSeconds(0.8f);
+        touchParticle.gameObject.SetActive(false);
+    }
+
 }

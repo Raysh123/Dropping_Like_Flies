@@ -86,7 +86,7 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            if (!pooledFoods[i].activeInHierarchy)
+            if (!pooledLeaf[i].activeInHierarchy)
             {
                 return pooledLeaf[i];
             }
@@ -97,7 +97,7 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            if (!pooledFoods[i].activeInHierarchy)
+            if (!pooledDrops[i].activeInHierarchy)
             {
                 return pooledDrops[i];
             }

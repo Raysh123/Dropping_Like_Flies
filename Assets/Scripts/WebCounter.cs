@@ -21,7 +21,7 @@ public class WebCounter : MonoBehaviour
         websLeft = transform.childCount;
         if (isDestroying && websLeft == 0)
         {
-            Debug.Log("Game Ended");
+            //Debug.Log("Game Ended");
             uiManager.gameOverScreen.SetActive(true);
         }        
     }

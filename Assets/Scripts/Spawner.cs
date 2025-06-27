@@ -32,12 +32,18 @@ public class Spawner : MonoBehaviour
     private float nextdropSpawnTime = 0.2f;
 
     private float scale;
+    [SerializeField]
+    private float scale1;
+    [SerializeField]
+    private float scale2;
     private ScoreManager scoreManager;
+    [SerializeField]
+    private float foodScale;
 
     private void Start()
     {
         scoreManager = FindAnyObjectByType<ScoreManager>();
-        scale = Random.Range(0.7f, 1.4f);
+        scale = Random.Range(scale1, scale2);
     }
 
     private void Update()
@@ -54,17 +60,17 @@ public class Spawner : MonoBehaviour
             nextfoodSpawnTime = Time.time + 1f / foodSpawnRate;
         }
 
-        if (Time.time >= nextleafSpawnTime && scoreManager.score >= phaseTwo)
+        if (Time.time >= nextleafSpawnTime && scoreManager.Score >= phaseTwo)
         {
             SpawnLeaf();
-            Debug.Log("Leaf");
+            //Debug.Log("Leaf");
             nextleafSpawnTime = Time.time + 1f / leafSpawnRate;
         }
 
-        else if (Time.time >= nextdropSpawnTime && scoreManager.score >= phaseThree)
+        else if (Time.time >= nextdropSpawnTime && scoreManager.Score >= phaseThree)
         {
             SpawnDrop();
-            Debug.Log("Drop");
+            //Debug.Log("Drop");
             nextdropSpawnTime = Time.time + 1f / dropSpawnRate;
         }
     }
@@ -101,8 +107,12 @@ public class Spawner : MonoBehaviour
             spawnedObject.SetActive(true);
         }
     }
+
+    int currentDropIndex;
+
     private void SpawnDrop()
     {
+        currentDropIndex++;
         Bounds bounds = spawnRegion.bounds;
 
         float randomX = Random.Range(bounds.min.x, bounds.max.x);
@@ -115,6 +125,7 @@ public class Spawner : MonoBehaviour
             spawnedObject.transform.rotation = Quaternion.identity;
             spawnedObject.transform.localScale = new Vector3(scale, scale, scale);  
             spawnedObject.SetActive(true);
+            spawnedObject.name = $"Drop {currentDropIndex}";
         }
     }
 
@@ -130,6 +141,7 @@ public class Spawner : MonoBehaviour
         {
             spawnedObject.transform.position = new Vector3(randomX, 49.787f, randomZ);
             spawnedObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 60f), Random.Range(0f, 60f));
+            spawnedObject.transform.localScale = new Vector3(foodScale, foodScale, foodScale);
             spawnedObject.SetActive(true);
         }
             

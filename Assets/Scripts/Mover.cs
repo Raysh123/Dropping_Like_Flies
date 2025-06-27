@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,8 @@ public class Mover : MonoBehaviour
     private NavMeshAgent agent;
     public bool moving;
     public Animator animator;
+    [SerializeField]
+    private ParticleSystem webParticle;
 
 
 
@@ -19,6 +22,7 @@ public class Mover : MonoBehaviour
         {
             return;
         }
+        webParticle.gameObject.SetActive( false );
             
     }
 
@@ -29,5 +33,17 @@ public class Mover : MonoBehaviour
         {
             agent.SetDestination(target.position);
         }
+    }
+
+    public void PlayWebParticle()
+    {
+        StartCoroutine(WebParticle());
+    }
+
+    IEnumerator WebParticle()
+    {
+        webParticle.gameObject.SetActive( true );
+        yield return new WaitForSeconds(0.7f);
+        webParticle.gameObject.SetActive( false );
     }
 }
