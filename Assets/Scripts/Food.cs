@@ -7,7 +7,17 @@ public class Food : MonoBehaviour
     private float moveSpeed = 2f;
     private bool isCaught = false;
     private ScoreManager scoreManager;
+    private AudioSource AudioSource;
+
+    [SerializeField]
+    private AudioClip ateSFX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Start()
+    {
+        AudioSource = GetComponent<AudioSource>();
+
+    }
 
     private void Update()
     {
@@ -33,8 +43,12 @@ public class Food : MonoBehaviour
 
     IEnumerator Caught()
     {
-        yield return new WaitForSeconds(0.03f);
+        AudioSource.PlayOneShot(ateSFX);
+        moveSpeed = 0f;
+        float clipLength = ateSFX.length;
+        yield return new WaitForSeconds(clipLength);
         isCaught = false;
+        moveSpeed = 5f;
         gameObject.SetActive(false);
     }
 }

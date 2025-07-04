@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("SceneOne");
+        SceneManager.LoadScene("BoxScene");
     }
 
     public void ArcadeMode()

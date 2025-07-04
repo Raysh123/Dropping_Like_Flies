@@ -11,11 +11,18 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
 
     private Vector3 targetPosition;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip catchSFX;
+    [SerializeField]
+    private AudioClip webShootSFX;
+
 
     private void Start()
     {
         touchParticle.gameObject.SetActive(false);
         spider = FindAnyObjectByType<Mover>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -51,6 +58,11 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
             spider.moving = false;
             spider.animator.Play("Idle");
             spider.PlayWebParticle();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(catchSFX, audioSource.pitch = Random.Range(0.8f, 1.2f));
+            }
+
         }
     }
     private void OnTriggerStay(Collider other)
@@ -68,6 +80,10 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
         {
             spider.moving = true;
             spider.animator.Play("Walk");
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(webShootSFX, audioSource.pitch = Random.Range(0.8f, 1.2f));
+            }
         }
     }
 
@@ -90,15 +106,15 @@ public class TapToMove : MonoBehaviour, IPointerDownHandler
         Debug.Log("Clicked");
         if (!spider.moving)
         {
+            moveTarget.transform.position = worldPosition;
             touchParticle.transform.position = worldPosition;
             StartCoroutine(TouchParticle());
-            moveTarget.transform.position = worldPosition;
             spider.GetComponent<Webber>().CreateLine(spider.transform.position);
         }
     }
     IEnumerator TouchParticle()
     {
-        touchParticle.gameObject.SetActive (true);
+        touchParticle.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.8f);
         touchParticle.gameObject.SetActive(false);
     }

@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     private float winScore;
     private string currentScene;
 
+    private GameStart gameStart;
+
     [SerializeField] private float score;
 
     public float Score
@@ -29,12 +31,16 @@ public class ScoreManager : MonoBehaviour
     private GameObject winScreen;
     [SerializeField]
     private TextMeshProUGUI scoreTMP;
+    [SerializeField]
+    private string sceneName;
+
     //private GameObject currentScore;
-   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //scoreUI = currentScore.gameObject.GetComponent<TextMeshProUGUI>().text;
+        gameStart = FindAnyObjectByType<GameStart>();
         Score = 0;
         winScreen.SetActive(false);
         currentScene = SceneManager.GetActiveScene().name ;
@@ -51,9 +57,9 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void Retry()
-    {
-       
+    {       
         SceneManager.LoadScene(currentScene);
+        gameStart.isStarted = true;
     }
 
     public void AddScore()
@@ -62,7 +68,7 @@ public class ScoreManager : MonoBehaviour
         scoreUI = scoreText;
         if (Score == winScore)
         {
-            winScreen.SetActive(true);
+            SceneManager.LoadScene(sceneName);
         }
     }
 }

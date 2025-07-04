@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5526412037900454265, guid: babfd0b6124560d4ba8ca43d2b701c9d, type: 3}
       propertyPath: m_Name
-      value: Caught effect  Variant
+      value: Web effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526412037900454265, guid: babfd0b6124560d4ba8ca43d2b701c9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8520223739790938598, guid: babfd0b6124560d4ba8ca43d2b701c9d, type: 3}
       propertyPath: lengthInSec
