@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject tutorialScreen;
+
+    private void Start()
+    {
+        tutorialScreen.gameObject.SetActive(false); 
+    }
     public void Play()
     {
         SceneManager.LoadScene("BoxScene");
@@ -21,5 +28,15 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void Tutorial()
+    {
+        tutorialScreen.gameObject.SetActive(true);
+    }
+
+    public void Back()
+    {
+        tutorialScreen.gameObject.SetActive(false);
     }
 }

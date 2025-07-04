@@ -4,6 +4,8 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField]
+    public GameObject particle;
+    [SerializeField]
     private float moveSpeed = 2f;
     private bool isCaught = false;
     private ScoreManager scoreManager;
@@ -15,6 +17,7 @@ public class Food : MonoBehaviour
 
     private void Start()
     {
+        particle.gameObject.SetActive(false);
         AudioSource = GetComponent<AudioSource>();
 
     }
@@ -45,8 +48,10 @@ public class Food : MonoBehaviour
     {
         AudioSource.PlayOneShot(ateSFX);
         moveSpeed = 0f;
+        particle.gameObject.SetActive (true);
         float clipLength = ateSFX.length;
         yield return new WaitForSeconds(clipLength);
+        particle.gameObject.SetActive (false);
         isCaught = false;
         moveSpeed = 5f;
         gameObject.SetActive(false);

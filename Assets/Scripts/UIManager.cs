@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip audioClip;
     public GameObject gameOverScreen;
 
     [SerializeField]
@@ -29,6 +33,7 @@ public class UIManager : MonoBehaviour
     {
         if (pauseScreen.activeSelf == false)
         {
+            audioSource.PlayOneShot(audioClip);
             pauseScreen.SetActive(true);
             Time.timeScale = 0f;
             buttonImage.sprite = playButtonSprite;
@@ -36,6 +41,7 @@ public class UIManager : MonoBehaviour
         }
         else if (pauseScreen.activeSelf == true)
         {
+            audioSource.PlayOneShot(audioClip);
             pauseScreen.SetActive(false);
             Time.timeScale = 1.0f;
             buttonImage.sprite = pauseButtonSprite;

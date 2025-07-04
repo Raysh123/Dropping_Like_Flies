@@ -27,8 +27,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private string scoreText;
     private string scoreUI;
-    [SerializeField]
-    private GameObject winScreen;
+    //[SerializeField]
+    //private GameObject winScreen;
     [SerializeField]
     private TextMeshProUGUI scoreTMP;
     [SerializeField]
@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
         //scoreUI = currentScore.gameObject.GetComponent<TextMeshProUGUI>().text;
         gameStart = FindAnyObjectByType<GameStart>();
         Score = 0;
-        winScreen.SetActive(false);
+        //winScreen.SetActive(false);
         currentScene = SceneManager.GetActiveScene().name ;
     }
 
